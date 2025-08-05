@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>To-Do List App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        #taskInput {
+            padding: 10px;
+            width: 300px;
+        }
+        button {
+            padding: 10px;
+            cursor: pointer;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 8px;
+            margin: 5px 0;
+            background-color: white;
+            border: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+        }
+        .delete-btn {
+            color: red;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h1>📋 To-Do List App</h1>
+
+<input type="text" id="taskInput" placeholder="Enter new task...">
+<button onclick="addTask()">Add Task</button>
+
+<ul id="taskList">
+    <!-- Tasks will appear here -->
+</ul>
+
+<script>
+    // Task adding function
+    function addTask() {
+        const taskInput = document.getElementById("taskInput");
+        const taskList = document.getElementById("taskList");
+
+        if (taskInput.value.trim() === "") {
+            alert("Please enter a task!");
+            return;
+        }
+
+        const li = document.createElement("li");
+        li.innerHTML = `
+            ${taskInput.value}
+            <span class="delete-btn" onclick="deleteTask(this)">❌</span>
+        `;
+
+        taskList.appendChild(li);
+        taskInput.value = "";  // Clear input after adding
+    }
+
+    // Task deleting function
+    function deleteTask(element) {
+        element.parentElement.remove();
+    }
+</script>
+
+</body>
+</html>
